@@ -1,0 +1,35 @@
+1. Each proces has a current directory, and all filenames are assumed to 
+   start with the name of that directory, unless they begin with a slash(/)
+
+2. Directorie is also ordinary file. They can be read but not created or written.
+
+3. list files and disc usage: du -a
+
+4. find a file by its name: 
+   (1). du -a | grep filename
+   (2). find path -name filename
+
+5. user information: /etc/passwd, user has user id and group id.
+
+6. file permission: -/d(-: ordinary file, d: directory)rwx/s(read, write, execute/set uid, file owner)
+   r--(group users, only read)r--(other users, only read)
+   set uid: when executing, the program is given the permission corresponding to the file owner.
+
+7. remove file: rm -f(force to remove without question) 
+
+8. change permissions of file: chmod 676 file(is rw-rwxrw-), chmor +x file(allow to execute),
+   chmod -w file(disallow to write)
+   (prevent from removing a file: not change the permission of file, but disallow write permission of the directory)
+
+9. file: name, inode, content. Every file has unique inode(i-number) and content, but can have different names.
+   Filename is a link to inode and content. rm will not remove file unless this filename is the last link to the file.
+   
+   make a new link to a file: ln old-file-name new-file-name 
+   When change file content with link a(filename a), open with link b(filename b) will reflect the change.
+   
+   copy file: cp old-file-name new-file-name
+   move(rename file): mv old-file-name new-file-name 
+   copy/move files into one directory: cp/mv f1 f2 ... directory
+
+   each terminal associates with a file in /dev/...(command tty finds it out)
+   discard the output: ... >/dev/null  
