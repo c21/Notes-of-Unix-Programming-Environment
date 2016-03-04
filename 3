@@ -1,0 +1,41 @@
+1. run more than one command(;): cmd1 ; cmd2 ; ...  
+   combine output of many commands together(()): (cmd1;cmd2;...) | ...
+
+2. copy input to output and file: tee filename (can use in pipe to save intermediate output)
+
+3. run command in future: (sleep time; cmd ...) &
+
+4. shell metacharacters: P76 of the book. 
+   Shell first interprets command to process metacharacters, which is transparent to the command program.
+
+5. create file(one method): >filename
+   write to file(one method): echo ... >filename 
+
+6. take something literally: '...'
+
+7. shell program: sh
+
+8. create new shell command: write commands into a file, then make it executable
+   add argument: cmd $1 $2 ...
+   add variable arguments: cmd $*
+
+9. `...`: run the command in ``, and then generate output. e.g. echo today: `date`
+
+10. create shell variable: variablename=...
+    to access the value of variable: $variablename
+
+11. make shell variable accessible in sub-shells: export variablename
+
+12. measure the time used of command: time cmd
+
+13. for loop: 
+    for ... in ...
+    do
+        ...
+    done
+
+    e.g. 
+    for i in *
+    do
+      echo $i
+    done
