@@ -1,5 +1,5 @@
 1.search pattern: grep/egrep/fgrep pattern filename1 filename2 ...
-	-n: print line number
+  -n: print line number
   -v: search the lines without the pattern
   -y: make lower case letters match either cases
 
@@ -19,55 +19,55 @@
   \(...\): match ... (using with \n) e.g. \(a\)\1 matches ...aa... (only in grep)
   (): group expression e.g. (ab)* matches empty,ab,abab,... (only in egrep)
 
-	(match length of 4 palindrome: grep '^\(.\)\(.\)\2\1$' file1 file2 ...)
+  (match length of 4 palindrome: grep '^\(.\)\(.\)\2\1$' file1 file2 ...)
    
   egrep: more powerful pattern matching than grep
   egrep -f patternfile file1 file2 ... 
   fgrep -f patternfile(no metacharacters) file1 file2 ...
-	allowing pattern to specify in file, and searching many patterns simultaneously
+  allowing pattern to specify in file, and searching many patterns simultaneously
 
 2.sort lines: sort filename1 filename2 ...
-	default: sort in ASCII order
-	-n: sort by numeric value
-	-r: reverse the order
-	-f: case insensitive 
+  default: sort in ASCII order
+  -n: sort by numeric value
+  -r: reverse the order
+  -f: case insensitive 
 
 3.filter or transform text: 
-	(1).sed ed-commands filename1 filename2 ...
-	(2).awk program filename1 filename2 ...
-	program: 'pattern1 {action1} pattern2 {actino2} ...'
-	action: stmt1; stmt2; ...	
-	awk reads the input in the filename one line at a time. For each pattern that matches the line,
-the action is performed. awk splits each line into fields separated by blank or tab, e.g. $1: first field
-	(only fields begin with a $)
-	in action, there could be control flow, user-defined variables, function call, like C 
-	all user-defined variables are initialized 0, string variables are initialized to "" by default
-all variabls, arrays don't need to be declared, and don't have type
-	associative array: the subscript of array doesn't need to be integers, could be any values,	
-										 e.g. array[$1] = $2, to enumerate the array: for(idx in array) print idx, array[idx]
+  (1).sed ed-commands filename1 filename2 ...
+  (2).awk program filename1 filename2 ...
+      program: 'pattern1 {action1} pattern2 {actino2} ...'
+      action: stmt1; stmt2; ...	
+      awk reads the input in the filename one line at a time. For each pattern that matches the line,
+      the action is performed. awk splits each line into fields separated by blank or tab, e.g. $1: first field
+      (only fields begin with a $)
+      in action, there could be control flow, user-defined variables, function call, like C 
+      all user-defined variables are initialized 0, string variables are initialized to "" by default
+      all variabls, arrays don't need to be declared, and don't have type
+      associative array: the subscript of array doesn't need to be integers, could be any values,	
+			 e.g. array[$1] = $2, to enumerate the array: for(idx in array) print idx, array[idx]
 
-	if action is not given: default action to print matched line
-if pattern is not given: action is down for every line
+      if action is not given: default action to print matched line
+      if pattern is not given: action is down for every line
 
-	$0: the entire input line
-	NF: a special variable to store the number of fields, e.g. NF: the number of fields, $NF: the last field
-	NR: a special variable to store the number of current input line
-	FS: a special variable to store the field separator
-	FILENAME: a special variable to store the current file name
-	BEGIN: a special pattern whose action is performed before processing first input line
-	END: a special pattern whose action is performed after processing last input line
-	length(): a function to calculate the length of string, e.g. length($0)
-	print/printf(): a function to print out
-	substr(): a function to calculate the substring of string, e.g. substr($0,1,2): $0[0-2]
-	split(): a function to split the string into fields according to provided separator
-					 e.g. split($0, arr, ":"): split $0 into arr[1-n] based on ":" 
-	next: a statement to cause to process next line
-	exit: a statement to cause to transfer to the END pattern(if exists)
-	-f: present program from a file, e.g. awk -f cmdfile file1 file2 ...			
-	-F: change the separator for fields in line, e.g. -F: change the separator to ':'
-		
-	example:
-	print line with line number: awk '{ printf "%d %s\n", NR, $0}' file
-	print line with the second field is empty: awk '$2 == ""' file 
-	print line with in the end to print the line number: awk 'END {print NR}' file
-	print the number of words(separator is blank): awk '{s += NF} END {print s}' file	
+      $0: the entire input line
+      NF: a special variable to store the number of fields, e.g. NF: the number of fields, $NF: the last field
+      NR: a special variable to store the number of current input line
+      FS: a special variable to store the field separator
+      FILENAME: a special variable to store the current file name
+      BEGIN: a special pattern whose action is performed before processing first input line
+      END: a special pattern whose action is performed after processing last input line
+      length(): a function to calculate the length of string, e.g. length($0)
+      print/printf(): a function to print out
+      substr(): a function to calculate the substring of string, e.g. substr($0,1,2): $0[0-2]
+      split(): a function to split the string into fields according to provided separator
+	       e.g. split($0, arr, ":"): split $0 into arr[1-n] based on ":" 
+      next: a statement to cause to process next line
+      exit: a statement to cause to transfer to the END pattern(if exists)
+      -f: present program from a file, e.g. awk -f cmdfile file1 file2 ...			
+      -F: change the separator for fields in line, e.g. -F: change the separator to ':'
+	
+      example:
+      print line with line number: awk '{ printf "%d %s\n", NR, $0}' file
+      print line with the second field is empty: awk '$2 == ""' file 
+      print line with in the end to print the line number: awk 'END {print NR}' file
+      print the number of words(separator is blank): awk '{s += NF} END {print s}' file	
