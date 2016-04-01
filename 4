@@ -71,3 +71,14 @@
       print line with the second field is empty: awk '$2 == ""' file 
       print line with in the end to print the line number: awk 'END {print NR}' file
       print the number of words(separator is blank): awk '{s += NF} END {print s}' file	
+      print the count of words(separator is blank):
+      awk '
+      {
+        for(i = 1; i <= NF; i++)
+          count[$i]++;
+      }
+      END {
+        for(idx in count)
+          printf("%s:%d\n", idx, count[idx]);
+      }
+      ' $*
