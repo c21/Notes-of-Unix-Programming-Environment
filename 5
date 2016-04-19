@@ -1,74 +1,74 @@
 1.display a calendar: cal
 
 2.shell built-in variables and metacharacters:
-	?: match any single character
-	*: match any zero or more characters
-	|: match one of the two patter, e.g. a|b, match a or b.
+  ?: match any single character
+  *: match any zero or more characters
+  |: match one of the two patter, e.g. a|b, match a or b.
   $$: process ID of current shell
-	$#: the number of arguments
-	$*: all arguments 		
-	$1: the value of first argument
-	$?: return value of last command
-	$var: the value of variable: var.
-	$HOME: default argument for cd
-	$PATH: the list of directories to search for command for shell
-	var=value: assign value to variable: var.
-	;: command terminator, e.g. echo hello; date
-	`...`: run commands of ..., output replaces `...`.
-	'...'("..."): take ... literally
+  $#: the number of arguments
+  $*: all arguments 		
+  $1: the value of first argument
+  $?: return value of last command
+  $var: the value of variable: var.
+  $HOME: default argument for cd
+  $PATH: the list of directories to search for command for shell
+  var=value: assign value to variable: var.
+  ;: command terminator, e.g. echo hello; date
+  `...`: run commands of ..., output replaces `...`.
+  '...'("..."): take ... literally
 	
 3.shell built-in command
-	set: set the shell variable, e.g. set a b, to make $1=a, $2=b,
-			 if no argument, show the values of variables in the environment.
+  set: set the shell variable, e.g. set a b, to make $1=a, $2=b,
+       if no argument, show the values of variables in the environment.
 	
 
 4.shell control flow:
-	(1).case: 
-		  case ... in
-		  pattern1)	action1 ;;
-		  pattern1)	action2 ;;
-		  ...
-		  esac
-	match with patterns one by one, and take action for the first matched pattern.
+  (1).case: 
+      case ... in
+      pattern1)	action1 ;;
+      pattern1)	action2 ;;
+      ...
+      esac
+  match with patterns one by one, and take action for the first matched pattern.
 
-	e.g. 
-	case $# in
-	0)	action1 ;;	# if the number of arguments is 0
-	1)	action2 ;;	# if the number of arguments is 1
-	*)  action3 ;;	# other case
-	esac
+  e.g. 
+  case $# in 
+  0)	action1 ;;	# if the number of arguments is 0
+  1)	action2 ;;	# if the number of arguments is 1
+  *)    action3 ;;	# other case
+  esac
 
-	(2).if:
+  (2).if:
       if ...(must be a command)
       then
-          ...
+  	 ...
       else
-          ...
+  	 ...
       fi
-	
-	(3).for:
-			for ... in ...
-			do
-				...
-			done
-	e.g.
-	for i in *.c
-	do
-		echo $i
-	done
-	print all filenames ending with .c	
 
-	(4).while:
-			while cmd
-			do
-				...(executed if cmd returns true)
-			done
+  (3).for:
+      for ... in ...
+      do
+	  ...
+      done
+  e.g.
+  for i in *.c
+  do
+     echo $i
+  done
+  print all filenames ending with .c	
 
-	(5).until:
-			until cmd
-			do
-				...(executed if cmd returns false)
-			done
+  (4).while:
+      while cmd
+      do
+	...(executed if cmd returns true)
+      done
+
+  (5).until:
+      until cmd
+      do
+	...(executed if cmd returns false)
+      done
 
 5.catch signal: traps cmds signal-numbers
   e.g. traps 'echo hello' 2 (catch interrupt signal: ctrl-c)
