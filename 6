@@ -1,0 +1,31 @@
+1.compilation process: e.g. gcc.
+  (1).preprocess(such as #define, #include): execute cpp, get new C file.
+  (2).transform to assembly code: execute cc1, get assembly file.
+  (3).transform to machine code: execute as, get object file.
+  (4).link object files to an executable file: execute ld, get executable file.
+
+2.gcc
+  a.out: the default name of executable, e.g. gcc hello.c
+  -o: set the name of executable, e.g. gcc -o hello hello.c 
+  -c: don't generate executable, just generate machine code, e.g. gcc -c hello.c, get hello.o
+  -I: set looking for headers directory, e.g. gcc -I. hello.c (by default directory: /usr/include)
+  -L: set looking for libraries directory, e.g. gcc -L/mylib hello.c (by default directory: /usr/lib) 
+  -lxxx: to link with libxxx.so or libxxx.a in libraries directory. two kinds of libraries: 
+         statically-linked library(.a), dynamically-linked library(.so)
+         e.g. to link with math library, gcc hello.c -lm
+  -g: enable debugging with gdb
+  -O: turn on optimization
+  -Wall: give much better warnings
+
+3.file pointer: FILE *
+  a pointer to the structure FILE including information of file:
+  buffer, whether reading or writing file, ...
+  By default, C program opens 3 files, the file pointers are stdin, stdout, stderr.
+  *standard error:
+  The standard error was invented after pipes, because error messages to standard output
+  disappear into pipes, instead of printing out on terminal.
+
+4./dev/tty: a file to represent current terminal of process.
+  It can be read and written. e.g. echo 1 >/dev/tty   
+
+5.get environment shell variable: getenv(). e.g. getenv("HOME")
