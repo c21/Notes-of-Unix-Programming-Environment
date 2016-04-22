@@ -1,0 +1,21 @@
+1.system call of file (argument is file descriptor):
+  read, write, creat, open, close, lseek(change read/write starting position),
+  unlink(remove file) 
+
+2.error number:
+  Usually system call when facing an error will return -1.
+  All system calls also leave an error number in an integer variable: errno,
+  to specify the error in more detail. A string array sys_errlist gives the 
+  readable string explanation of corresponding error number, by sys_errlist[errno].
+  e.g.
+  #include <errno.h>
+  ...
+  if(errno > 0 && errno < sys_nerr)
+    fprintf(stderr, "%s", sys_errlist[errno]);
+
+3.directory:
+  directory is a file to contain pair of file names and inode number.
+  e.g. read current directory: open(".", 0).
+
+4.handle signal:
+  signal(signal_number, handler_function)
